@@ -1,13 +1,28 @@
 source 'https://rubygems.org'
 
-ruby '2.3.4'
+ruby ENV['CUSTOM_RUBY_VERSION'] || '2.2.5'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development # Added development group.
-gem 'pg', group: :production # Added postgres and made it production only.
-gem 'rails_12factor'
+gem 'bigcommerce'
+gem 'omniauth-bigcommerce', '~> 0.3.0'
 
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sinatra', '~> 1.4.7'
+gem 'datamapper'
+gem 'thin'
+gem 'dotenv'
+
+# For JWT example:
+gem 'jwt'
+gem 'money'
+gem 'cachy'
+gem 'redis'
+
+group :production do
+  gem 'pg', '>= 0.15'
+  gem 'dm-postgres-adapter'
+  gem 'do_postgres', '>= 0.10.17'
+end
+
+group :development do
+  gem 'sqlite3'
+  gem 'dm-sqlite-adapter'
+end
